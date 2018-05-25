@@ -1,12 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fail</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            min-height: 100%;
+            background: #292929;
+            color: #ededed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        article {
+            padding: 1.5em;
+        }
+
+        button {
+            padding: 8px 16px;
+        }
+
+        .result div {
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .result #green {
+            background: rgb(129, 128, 24);
+        }
+
+        .result #red {
+            background: rgb(194, 52, 52);
+        }
+
+        .result #grey {
+            background: rgb(153, 153, 153);
+        }
+
+        h1 {
+            font-weight: lighter;
+            font-size: 3em;
+        }
+
+        h2 {
+            font-weight: lighter;
+            font-size: 1.5em;
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+        .hover-test {
+            background: rgb(134, 134, 134);
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .hover-test:hover:after {
+            font-size: 0.5em;
+            content: 'Awesome Tooltip!f';
+            background: #ededed;
+            color: #292929;
+            padding: 10px 20px;
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+    </style>
+    <script>
+        let currentCombination = "";
+        function blubb(code) {
+            currentCombination += code;
+
+            if (currentCombination.length > 1) {
+                switch (currentCombination) {
+                    case "12":
+                        document.getElementById("green").classList.add("hidden");
+                        document.getElementById("grey").classList.add("hidden");
+                        document.getElementById("red").classList.remove("hidden");
+                        break;
+                    case "13":
+                        document.getElementById("red").classList.add("hidden");
+                        document.getElementById("grey").classList.add("hidden");
+                        document.getElementById("green").classList.remove("hidden");
+                        break;
+                    default:
+                        document.getElementById("red").classList.add("hidden");
+                        document.getElementById("green").classList.add("hidden");
+                        document.getElementById("grey").classList.remove("hidden");
+                        break;
+                }
+            }
+        }
+
+        function reset() {
+            currentCombination = "";
+            document.getElementById("red").classList.add("hidden");
+            document.getElementById("green").classList.add("hidden");
+            document.getElementById("grey").classList.add("hidden");
+        }
+    </script>
 </head>
+
 <body>
-    
+
+    <article>
+        <h1>1. Combinations</h1>
+        <h2>Available combinations:</h2>
+        <ul>
+            <li>12</li>
+            <li>23</li>
+        </ul>
+        <button onClick="blubb('1')">1</button>
+        <button onclick="blubb('2')">2</button>
+        <button onclick="blubb('3')">3</button>
+        <button onclick="reset()">Reset</button>
+        <h2>Result:</h2>
+        <div class="result">
+            <div id="red" class="hidden">Awesome!</div>
+            <div id="green" class="hidden">Impresive!</div>
+            <div id="grey" class="hidden">Unknown Combination!</div>
+        </div>
+        <hr>
+        <h1>2. Hover Test</h1>
+        <div class="hover-test">Hover Area</div>
+    </article>
 </body>
+
 </html>
